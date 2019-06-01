@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
-  <h2 class="text-center mb-5">Alumni Clearance</h2>
+  <h2 class="text-center mb-5">Security Clearance</h2>
   <hr>
   <div class="row mt-3">
     <div class="col-md-6">
       <h3 class="text-center mt-4 mb-4">Your Current Status</h3>
-      <p class="pl-4 pr-4">Dear Vincent Michael, you are uncleared at the Alumni.
+      <p class="pl-4 pr-4">Dear Vincent Michael, you are uncleared at the Security.
         Please update your status in the right pane to correct this.</p>
     </div>
     <div class="col-md-6">
@@ -22,8 +22,8 @@
   </div>
   <div style="margin-top:200px;">
     <p class="mt-5 text-center text-danger">
-      Please Proceed to the Alumni if you have issues
-    with Alumni</p>
+      Please Proceed to the Security if you have issues
+    with Security</p>
   </div>
 </div>
 @endsection

@@ -23,3 +23,4 @@ Route::get('/alumniclearance','PagesController@alumni');
 Route::get('/bursaryclearance','PagesController@bursary');
 Route::get('/studentaffairsclearance','PagesController@studentAffairs');
 Route::get('/facultyclearance','PagesController@faculty');
+Route::get('/securityclearance','PagesController@security');

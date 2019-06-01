@@ -52,7 +52,7 @@
                 color: green;
                 padding: 0 25px;
                 font-size: 14px;
-                font-weight: 800;
+                font-weight: 300;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
