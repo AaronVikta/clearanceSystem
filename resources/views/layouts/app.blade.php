@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -39,32 +40,18 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                       <li class="nav-item">
-                          <a class="nav-link" href="/libraryclearance">{{ __('Library') }}</a>
+                          <a class="nav-link" href="/startclearance">{{ __('Clearance Status') }}</a>
                       </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/alumniclearance">{{ __('Alumni') }}</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/bursaryclearance">{{ __('Bursary') }}</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/securityclearance">{{ __('Security') }}</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/studentaffairsclearance">{{ __('studentAffairs') }}</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="/facultyclearance">{{ __('Faculty') }}</a>
-                      </li>
+
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
-                                <!-- <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li> -->
+                                </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
@@ -77,6 +64,9 @@
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        {{ __('Profile') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

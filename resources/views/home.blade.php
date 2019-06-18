@@ -14,10 +14,24 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Welcome to your DashBoard! {{Auth::user()->name}}
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-3">
+        Generate Alumni Fee RRR
+      </div>
+      <div class="col-md-3">
+        Pay Alumni Fee
+      </div>
+      <div class="col-md-3">
+        Generate Convocation Fee RRR
+      </div>
+      <div class="col-md-3">
+        Pay Convocation Fee
+      </div>
     </div>
 </div>
 @endsection

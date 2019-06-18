@@ -18,9 +18,4 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/libraryclearance','PagesController@library');
-Route::get('/alumniclearance','PagesController@alumni');
-Route::get('/bursaryclearance','PagesController@bursary');
-Route::get('/studentaffairsclearance','PagesController@studentAffairs');
-Route::get('/facultyclearance','PagesController@faculty');
-Route::get('/securityclearance','PagesController@security');
+Route::get('/startclearance','PagesController@clearanceStatus');
