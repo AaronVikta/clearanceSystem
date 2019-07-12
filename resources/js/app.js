@@ -19,9 +19,16 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+Vue.component('student-affairs', require('./components/StudentAffairsComponent.vue').default);
+Vue.component('security-component', require('./components/SecurityComponent.vue').default);
+Vue.component('alumni-component', require('./components/AlumniComponent.vue').default);
+Vue.component('library-component', require('./components/LibraryComponent.vue').default);
+Vue.component('audit-component', require('./components/AuditComponent.vue').default);
+Vue.component('faculty-component', require('./components/FacultyComponent.vue').default);
+Vue.component('profile-component', require('./components/profileComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

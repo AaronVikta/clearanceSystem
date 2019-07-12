@@ -19,11 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('regno')->nullable();
+            $table->string('reg_no')->unique()->nullable();
             $table->string('gender')->nullable();
             $table->string('age')->nullable();
             $table->string('phone')->nullable();
-            $table->string('typeof')->nullable();
+            $table->string('typeof')->default('student');
             $table->boolean('securitycleared')->nullable();
             $table->boolean('staffairscleared')->nullable();
             $table->boolean('alumnicleared')->nullable();

@@ -71,7 +71,7 @@
   </div>
   <div class="mt-5 col-md-12">
     <h3 class="text-danger text-center">Important Notice</h3>
-    <p class="pl-4 pr-4 text-center">The Bar indicates whether you have been cleared or not.
+    <p class="pl-4 pr-4 text-center">The colour of the bar indicates whether you have been cleared or not.
     </p>
   </div>
   </div>
