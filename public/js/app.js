@@ -2853,16 +2853,61 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       showModal: '',
+      rrr: "",
+      generatedrrr: "",
       showConvoc: "",
+      editProfile: "",
       student: {}
     };
   },
   mounted: function mounted() {
-    console.log(this.$userId), this.getStudentDetail();
+    console.log(this.$userId), this.getStudentDetail(), this.getGeneratedRRR();
   },
   methods: {
     getStudentDetail: function getStudentDetail(url) {
@@ -2874,6 +2919,34 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (res) {
         _this.student = res;
+      });
+    },
+    setAR: function setAR() {
+      var id = this.$userId;
+
+      if (this.rrr != null) {
+        console.log('Exists Already');
+      } else {
+        var Arrr = Math.random().toString(36).replace('0.', '');
+        this.rrr = Arrr;
+        axios.post("api/alumnirrr/".concat(id), {
+          rrr: this.rrr
+        }).then(function (res) {
+          console.log(res.data);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+    },
+    getGeneratedRRR: function getGeneratedRRR(Aurl) {
+      var _this2 = this;
+
+      var id = this.$userId;
+      Aurl = Aurl || "api/myrrr/".concat(id);
+      fetch(Aurl).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this2.rrr = res['RRR'];
       });
     }
   }
@@ -7434,6 +7507,25 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "\n.dark[data-v-51ba0813]{\r\n  font-weight: bold;\n}\r\n\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.dark[data-v-bfb1d4c2]{\r\n  font-weight: bold;\n}\r\n", ""]);
 
 // exports
 
@@ -38237,6 +38329,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -40841,283 +40963,450 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container-fluid" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", {}, [
-        _c("p", [_vm._v(_vm._s(_vm.student.name))]),
+      _c("div", { staticClass: "col-md-10 offset-md-1" }, [
+        _c("h5", { staticClass: "text-center dark" }, [
+          _vm._v("STUDENT PERSONAL INFORMATION")
+        ]),
         _vm._v(" "),
-        _c("p", [_vm._v(_vm._s(_vm.student.email))])
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("span", [_vm._v("Name: " + _vm._s(_vm.student.name) + " ")]),
+            _vm._v(" "),
+            _vm._m(0),
+            _c("br"),
+            _vm._v("\n            Department: " + _vm._s(_vm.student.dept)),
+            _c("br"),
+            _vm._v("\n            Email: " + _vm._s(_vm.student.email) + " "),
+            _c("br"),
+            _vm._v(
+              "\n            Registration Number: " +
+                _vm._s(_vm.student.reg_no) +
+                " "
+            ),
+            _c("br"),
+            _vm._v("\n            Phone: " + _vm._s(_vm.student.phone) + " "),
+            _c("br"),
+            _vm._v(" "),
+            _c("span", { staticClass: "float-right" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-success btn-sm float-right",
+                  attrs: {
+                    href: "#",
+                    type: "button",
+                    "data-toggle": "modal",
+                    "data-target": "#editprofile"
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.editProfile = true
+                    }
+                  }
+                },
+                [_vm._v("Update Profile")]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr", { staticStyle: { color: "#000" } })
       ])
     ]),
     _vm._v(" "),
-    _c("h4", { staticClass: "text-center" }, [_vm._v("Take Actions")]),
-    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-3 card" }, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "#",
-              type: "",
-              id: "show-modal",
-              "data-toggle": "modal",
-              "data-target": "#generate"
-            },
-            on: {
-              click: function($event) {
-                _vm.showModal = true
-              }
-            }
-          },
-          [_vm._v("\n        Generate Alumni RRR\n      ")]
-        )
-      ]),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-3 card" }, [
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "#",
-              type: "",
-              id: "show-modal",
-              "data-toggle": "modal",
-              "data-target": "#genconvoc"
-            },
-            on: {
-              click: function($event) {
-                _vm.showConvoc = true
-              }
-            }
-          },
-          [_vm._v("\n        Generate Convocation RRR\n      ")]
-        )
-      ]),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _vm.showModal
-        ? _c("div", [
+      _c("div", { staticClass: "col-md-10 offset-md-1" }, [
+        _c("h4", { staticClass: "text-center" }, [_vm._v("Take Actions")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-3 card" }, [
             _c(
-              "div",
+              "a",
               {
-                staticClass: "modal fade",
                 attrs: {
-                  id: "generate",
-                  tabindex: "-1",
-                  role: "dialog",
-                  "aria-labelledby": "exampleModalCenterTitle",
-                  "aria-hidden": "true"
+                  href: "#",
+                  type: "",
+                  id: "show-modal",
+                  "data-toggle": "modal",
+                  "data-target": "#generate"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.showModal = true
+                    _vm.setAR()
+                  }
                 }
               },
-              [
+              [_vm._v("\n          Generate Alumni RRR\n        ")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-3 card" }, [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "#",
+                  type: "",
+                  id: "show-modal",
+                  "data-toggle": "modal",
+                  "data-target": "#genconvoc"
+                },
+                on: {
+                  click: function($event) {
+                    _vm.showConvoc = true
+                  }
+                }
+              },
+              [_vm._v("\n        Generate Convocation RRR\n      ")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm.showModal
+            ? _c("div", [
                 _c(
                   "div",
                   {
-                    staticClass: "modal-dialog modal-dialog-centered",
-                    attrs: { role: "document" }
+                    staticClass: "modal fade",
+                    attrs: {
+                      id: "generate",
+                      tabindex: "-1",
+                      role: "dialog",
+                      "aria-labelledby": "exampleModalCenterTitle",
+                      "aria-hidden": "true"
+                    }
                   },
                   [
-                    _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(2),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c(
-                          "form",
-                          {
-                            on: {
-                              submit: function($event) {
-                                $event.preventDefault()
-                              }
-                            }
-                          },
-                          [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal-dialog modal-dialog-centered",
+                        attrs: { role: "document" }
+                      },
+                      [
+                        _c("div", { staticClass: "modal-content" }, [
+                          _vm._m(2),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
                             _c(
-                              "div",
-                              { attrs: { slot: "header" }, slot: "header" },
-                              [
-                                _c("input", {
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    name: "",
-                                    id: "room_type"
+                              "form",
+                              {
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
                                   }
-                                }),
-                                _vm._v(" "),
-                                _c("input", {
-                                  staticClass: "form-control",
-                                  attrs: { type: "hidden", name: "", id: "id" }
-                                }),
-                                _vm._v(" "),
+                                }
+                              },
+                              [
                                 _c(
-                                  "a",
-                                  {
-                                    staticClass:
-                                      "mt-1 btn btn-outline-danger btn-sm",
-                                    attrs: {
-                                      type: "button",
-                                      "data-dismiss": "modal"
-                                    },
-                                    on: {
-                                      click: [
-                                        function($event) {
-                                          $event.preventDefault()
+                                  "div",
+                                  { attrs: { slot: "header" }, slot: "header" },
+                                  [
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        disabled: "",
+                                        type: "text",
+                                        name: "",
+                                        id: "room_type"
+                                      },
+                                      domProps: { value: _vm.rrr }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "hidden",
+                                        name: "",
+                                        id: "id"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "mt-1 btn btn-outline-danger btn-sm",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal"
                                         },
-                                        function($event) {
-                                          _vm.showModal = false
+                                        on: {
+                                          click: [
+                                            function($event) {
+                                              $event.preventDefault()
+                                            },
+                                            function($event) {
+                                              _vm.showModal = false
+                                            }
+                                          ]
                                         }
-                                      ]
-                                    }
-                                  },
-                                  [_vm._v("Cancel")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass:
-                                      "mt-1 btn btn-outline-success\n                  btn-sm",
-                                    attrs: {
-                                      type: "button",
-                                      "data-dismiss": "modal"
-                                    },
-                                    on: {
-                                      click: [
-                                        function($event) {
-                                          $event.preventDefault()
+                                      },
+                                      [_vm._v("Done")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "mt-1 btn btn-outline-success\n                  btn-sm",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal"
                                         },
-                                        function($event) {}
-                                      ]
-                                    }
-                                  },
-                                  [_vm._v("Print")]
+                                        on: {
+                                          click: [
+                                            function($event) {
+                                              $event.preventDefault()
+                                            },
+                                            function($event) {}
+                                          ]
+                                        }
+                                      },
+                                      [_vm._v("Print")]
+                                    )
+                                  ]
                                 )
                               ]
                             )
-                          ]
-                        )
-                      ])
-                    ])
+                          ])
+                        ])
+                      ]
+                    )
                   ]
                 )
-              ]
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.showConvoc
-        ? _c("div", [
-            _c(
-              "div",
-              {
-                staticClass: "modal fade",
-                attrs: {
-                  id: "genconvoc",
-                  tabindex: "-1",
-                  role: "dialog",
-                  "aria-labelledby": "exampleModalCenterTitle",
-                  "aria-hidden": "true"
-                }
-              },
-              [
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.editProfile
+            ? _c("div", [
                 _c(
                   "div",
                   {
-                    staticClass: "modal-dialog modal-dialog-centered",
-                    attrs: { role: "document" }
+                    staticClass: "modal fade",
+                    attrs: {
+                      id: "editprofile",
+                      tabindex: "-1",
+                      role: "dialog",
+                      "aria-labelledby": "exampleModalCenterTitle",
+                      "aria-hidden": "true"
+                    }
                   },
                   [
-                    _c("div", { staticClass: "modal-content" }, [
-                      _vm._m(3),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "modal-body" }, [
-                        _c(
-                          "form",
-                          {
-                            on: {
-                              submit: function($event) {
-                                $event.preventDefault()
-                              }
-                            }
-                          },
-                          [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal-dialog modal-dialog-centered",
+                        attrs: { role: "document" }
+                      },
+                      [
+                        _c("div", { staticClass: "modal-content" }, [
+                          _vm._m(3),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
                             _c(
-                              "div",
-                              { attrs: { slot: "header" }, slot: "header" },
-                              [
-                                _c("input", {
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "text",
-                                    name: "",
-                                    id: "room_type"
+                              "form",
+                              {
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
                                   }
-                                }),
-                                _vm._v(" "),
-                                _c("input", {
-                                  staticClass: "form-control",
-                                  attrs: { type: "hidden", name: "", id: "id" }
-                                }),
-                                _vm._v(" "),
+                                }
+                              },
+                              [
                                 _c(
-                                  "a",
-                                  {
-                                    staticClass:
-                                      "mt-1 btn btn-outline-danger btn-sm",
-                                    attrs: {
-                                      type: "button",
-                                      "data-dismiss": "modal"
-                                    },
-                                    on: {
-                                      click: [
-                                        function($event) {
-                                          $event.preventDefault()
+                                  "div",
+                                  { attrs: { slot: "header" }, slot: "header" },
+                                  [
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: { type: "text", name: "", id: "" }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "hidden",
+                                        name: "",
+                                        id: "id"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "mt-1 btn btn-outline-danger btn-sm",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal"
                                         },
-                                        function($event) {
-                                          _vm.showModal = false
+                                        on: {
+                                          click: [
+                                            function($event) {
+                                              $event.preventDefault()
+                                            },
+                                            function($event) {
+                                              _vm.editProfile = false
+                                            }
+                                          ]
                                         }
-                                      ]
-                                    }
-                                  },
-                                  [_vm._v("Cancel")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass:
-                                      "mt-1 btn btn-outline-success\n                  btn-sm",
-                                    attrs: {
-                                      type: "button",
-                                      "data-dismiss": "modal"
-                                    },
-                                    on: {
-                                      click: [
-                                        function($event) {
-                                          $event.preventDefault()
+                                      },
+                                      [_vm._v("Cancel")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "mt-1 btn btn-outline-success\n                  btn-sm",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal"
                                         },
-                                        function($event) {}
-                                      ]
-                                    }
-                                  },
-                                  [_vm._v("Print")]
+                                        on: {
+                                          click: [
+                                            function($event) {
+                                              $event.preventDefault()
+                                            },
+                                            function($event) {}
+                                          ]
+                                        }
+                                      },
+                                      [_vm._v("Print")]
+                                    )
+                                  ]
                                 )
                               ]
                             )
-                          ]
-                        )
-                      ])
-                    ])
+                          ])
+                        ])
+                      ]
+                    )
                   ]
                 )
-              ]
-            )
-          ])
-        : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showConvoc
+            ? _c("div", [
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal fade",
+                    attrs: {
+                      id: "genconvoc",
+                      tabindex: "-1",
+                      role: "dialog",
+                      "aria-labelledby": "exampleModalCenterTitle",
+                      "aria-hidden": "true"
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal-dialog modal-dialog-centered",
+                        attrs: { role: "document" }
+                      },
+                      [
+                        _c("div", { staticClass: "modal-content" }, [
+                          _vm._m(4),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
+                            _c(
+                              "form",
+                              {
+                                on: {
+                                  submit: function($event) {
+                                    $event.preventDefault()
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  { attrs: { slot: "header" }, slot: "header" },
+                                  [
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        name: "",
+                                        id: "room_type"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "hidden",
+                                        name: "",
+                                        id: "id"
+                                      }
+                                    }),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "mt-1 btn btn-outline-danger btn-sm",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal"
+                                        },
+                                        on: {
+                                          click: [
+                                            function($event) {
+                                              $event.preventDefault()
+                                            },
+                                            function($event) {
+                                              _vm.showModal = false
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      [_vm._v("Cancel")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "mt-1 btn btn-outline-success\n                  btn-sm",
+                                        attrs: {
+                                          type: "button",
+                                          "data-dismiss": "modal"
+                                        },
+                                        on: {
+                                          click: [
+                                            function($event) {
+                                              $event.preventDefault()
+                                            },
+                                            function($event) {}
+                                          ]
+                                        }
+                                      },
+                                      [_vm._v("Print")]
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ])
+            : _vm._e()
+        ])
+      ])
     ])
   ])
 }
@@ -41126,8 +41415,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 card" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Pay Alumni Fee")])
+    return _c("span", { staticClass: "float-right" }, [
+      _c("img", { attrs: { src: "", alt: "profile picture" } })
     ])
   },
   function() {
@@ -41146,7 +41435,32 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
-        [_c("a", { attrs: { href: "#" } }, [_vm._v("Your RRR")])]
+        [_c("a", { attrs: { href: "#" } }, [_vm._v("Your Alumni RRR")])]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
+        [_c("a", { attrs: { href: "#" } }, [_vm._v("Your profile")])]
       ),
       _vm._v(" "),
       _c(
@@ -54037,7 +54351,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profileComponent_vue_vue_type_template_id_bfb1d4c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./profileComponent.vue?vue&type=template&id=bfb1d4c2&scoped=true& */ "./resources/js/components/profileComponent.vue?vue&type=template&id=bfb1d4c2&scoped=true&");
 /* harmony import */ var _profileComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profileComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/profileComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _profileComponent_vue_vue_type_style_index_0_id_bfb1d4c2_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true& */ "./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -54045,7 +54361,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _profileComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _profileComponent_vue_vue_type_template_id_bfb1d4c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _profileComponent_vue_vue_type_template_id_bfb1d4c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -54074,6 +54390,22 @@ component.options.__file = "resources/js/components/profileComponent.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./profileComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/profileComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true& ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_style_index_0_id_bfb1d4c2_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/profileComponent.vue?vue&type=style&index=0&id=bfb1d4c2&lang=css&scoped=true&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_style_index_0_id_bfb1d4c2_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_style_index_0_id_bfb1d4c2_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_style_index_0_id_bfb1d4c2_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_style_index_0_id_bfb1d4c2_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_style_index_0_id_bfb1d4c2_lang_css_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

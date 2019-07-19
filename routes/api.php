@@ -24,3 +24,7 @@ Route::put('updatefacultystatus/{id}', 'FacultyController@updateStudent');
 Route::put('updateauditstatus/{id}', 'AuditController@updateStudent');
 Route::put('updatesaffairsstatus/{id}', 'SAffairsController@updateStudent');
 Route::get('student/{id}','StudentController@show');
+// Set an generated rrr to user
+Route::post('/alumnirrr/{id}','RRRController@generateAlumniRRR');
+Route::get('myrrr/{id}','RRRController@getMyAlumniRRR');
+// Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
