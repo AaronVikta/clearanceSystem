@@ -29,6 +29,7 @@ Vue.component('library-component', require('./components/LibraryComponent.vue').
 Vue.component('audit-component', require('./components/AuditComponent.vue').default);
 Vue.component('faculty-component', require('./components/FacultyComponent.vue').default);
 Vue.component('profile-component', require('./components/profileComponent.vue').default);
+Vue.component('status-component', require('./components/statusComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

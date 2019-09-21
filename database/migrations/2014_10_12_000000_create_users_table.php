@@ -25,12 +25,12 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('dept')->nullable();
             $table->string('typeof')->default('student');
-            $table->boolean('securitycleared')->nullable();
-            $table->boolean('staffairscleared')->nullable();
-            $table->boolean('alumnicleared')->nullable();
-            $table->boolean('bursarycleared')->nullable();
-            $table->boolean('facultycleared')->nullable();
-            $table->boolean('librarycleared')->nullable();
+            $table->boolean('securitycleared')->default(0);
+            $table->boolean('staffairscleared')->default(0);
+            $table->boolean('alumnicleared')->default(0);
+            $table->boolean('bursarycleared')->default(0);
+            $table->boolean('facultycleared')->default(0);
+            $table->boolean('librarycleared')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

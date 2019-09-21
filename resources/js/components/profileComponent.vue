@@ -24,29 +24,27 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-10 offset-md-1">
-        <h4 class="text-center">Take Actions</h4>
+      <div class="col-md-4 offset-md-4">
+        <h4 class="text-center">Generate Remita</h4>
         <div class="row">
-          <div class="col-md-3 card">
-            <a href="#" type="" id="show-modal"
+          <span class="">
+            <a href="#" type="button" id="show-modal"
             data-toggle="modal" data-target="#generate"
             @click="showModal=true; setAR()"
-            class="">
-            Generate Alumni RRR
+            class="btn btn-info mr-1 form-control">
+            Get Alumni RRR
           </a>
 
-        </div>
-        <div class="col-md-3 card">
-          <a href="#" type="" id="show-modal"
+        </span>
+        <span class="">
+          <a href="#" type="button" id="show-modal"
           data-toggle="modal" data-target="#genconvoc"
-          @click="showConvoc=true"
-          class="">
-          Generate Convocation RRR
+          @click="showConvoc=true; setCR()"
+          class="btn btn-info ml-3">
+          Get Convocation RRR
         </a>
-      </div>
-      <div class="col-md-3 card">
-        <a href="#">Pay Convocation Fee</a>
-      </div>
+      </span>
+    </div>
       <div v-if="showModal">
         <div class="modal fade" id="generate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -60,7 +58,7 @@
               <div class="modal-body">
                 <form v-on:submit.prevent>
                   <div class="" slot="header">
-                    <input disabled type="text" name="" class="form-control" :value="rrr"  id="room_type">
+                    <input disabled type="text" name="" class="form-control" :value="rrr"  id="">
                     <input type="hidden" name="" class="form-control" id="id">
                     <a type="button" v-on:click.prevent @click="showModal=false"
                     data-dismiss="modal" class="mt-1 btn btn-outline-danger btn-sm" >Done</a>
@@ -112,10 +110,10 @@
               <div class="modal-body">
                 <form v-on:submit.prevent>
                   <div class="" slot="header">
-                    <input type="text" name="" class="form-control"  id="room_type">
+                    <input type="text" disabled name="" class="form-control" :value="crrr"  id="">
                     <input type="hidden" name="" class="form-control" id="id">
                     <a type="button" v-on:click.prevent @click="showModal=false"
-                    data-dismiss="modal" class="mt-1 btn btn-outline-danger btn-sm" >Cancel</a>
+                    data-dismiss="modal" class="mt-1 btn btn-outline-danger btn-sm" >Done</a>
                     <a type="button" v-on:click.prevent class="mt-1 btn btn-outline-success
                     btn-sm" @click="" data-dismiss="modal">Print</a>
                   </div>
@@ -129,6 +127,7 @@
     </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -137,6 +136,7 @@ export default {
     return{
       showModal:'',
       rrr:"",
+      crrr:"",
       generatedrrr:"",
       showConvoc:"",
       editProfile:"",
@@ -148,7 +148,8 @@ export default {
   mounted(){
     console.log(this.$userId),
     this.getStudentDetail(),
-    this.getGeneratedRRR()
+    this.getGeneratedRRR(),
+    this.getConvocationRRR()
   },
   methods:{
     getStudentDetail(url){
@@ -162,7 +163,7 @@ export default {
     },
     setAR(){
       let id = this.$userId;
-     if(this.rrr != null){
+     if(this.rrr){
        console.log('Exists Already');
      }
      else{
@@ -179,13 +180,41 @@ export default {
        })
      }
    },
+   setCR(){
+     let id = this.$userId;
+    if(this.crrr){
+      console.log('Exists Already');
+    }
+    else{
+      let Crrr=  Math.random().toString(36).replace('0.', '')
+      this.crrr=Crrr
+      axios.post(`api/convocrrr/${id}`,{
+       crrr :this.crrr
+      })
+      .then(res=>{
+        console.log(res.data);
+      })
+      .catch(err =>{
+        console.log(err);
+      })
+    }
+  },
    getGeneratedRRR(Aurl){
      let id =this.$userId;
      Aurl= Aurl||`api/myrrr/${id}`
      fetch(Aurl)
      .then(res=>res.json())
      .then(res=>{
-       this.rrr =res['RRR']
+       this.rrr=res['RRR']
+     })
+   },
+   getConvocationRRR(Crl){
+     let id= this.$userId;
+     Crl =Crl||`api/crrr/${id}`
+     fetch(Crl)
+     .then(res=>res.json())
+     .then(res=>{
+       this.crrr=res['RRR']
      })
    }
   }
@@ -195,5 +224,9 @@ export default {
 <style lang="css" scoped>
 .dark{
   font-weight: bold;
+}
+.temp{
+  text-align: center;
+  margin-top: 3px;
 }
 </style>

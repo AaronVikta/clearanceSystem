@@ -55,7 +55,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 70px;
             }
 
             .links > a {
@@ -74,24 +74,25 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
+        <div class="container-fluid">
 
             <div class="row">
               <div class="col-md-12 mb-5">
+                @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+              </div>
+              <div class="col-md-12 mb-5 mt-3">
                 <div class="content">
                     <div class="title">
                         UNN Clearance Portal
@@ -99,7 +100,7 @@
 
                     <div class="links mb-5">
                         <a href="/home">Profile</a>
-                        <a href="/startclearance">Start Clearance</a>
+                        <a href="/startclearance">Status</a>
                     </div>
                 </div>
               </div>

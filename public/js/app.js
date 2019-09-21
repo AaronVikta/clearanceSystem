@@ -2894,12 +2894,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       showModal: '',
       rrr: "",
+      crrr: "",
       generatedrrr: "",
       showConvoc: "",
       editProfile: "",
@@ -2907,7 +2907,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.$userId), this.getStudentDetail(), this.getGeneratedRRR();
+    console.log(this.$userId), this.getStudentDetail(), this.getGeneratedRRR(), this.getConvocationRRR();
   },
   methods: {
     getStudentDetail: function getStudentDetail(url) {
@@ -2924,13 +2924,30 @@ __webpack_require__.r(__webpack_exports__);
     setAR: function setAR() {
       var id = this.$userId;
 
-      if (this.rrr != null) {
+      if (this.rrr) {
         console.log('Exists Already');
       } else {
         var Arrr = Math.random().toString(36).replace('0.', '');
         this.rrr = Arrr;
         axios.post("api/alumnirrr/".concat(id), {
           rrr: this.rrr
+        }).then(function (res) {
+          console.log(res.data);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+      }
+    },
+    setCR: function setCR() {
+      var id = this.$userId;
+
+      if (this.crrr) {
+        console.log('Exists Already');
+      } else {
+        var Crrr = Math.random().toString(36).replace('0.', '');
+        this.crrr = Crrr;
+        axios.post("api/convocrrr/".concat(id), {
+          crrr: this.crrr
         }).then(function (res) {
           console.log(res.data);
         })["catch"](function (err) {
@@ -2947,6 +2964,104 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (res) {
         _this2.rrr = res['RRR'];
+      });
+    },
+    getConvocationRRR: function getConvocationRRR(Crl) {
+      var _this3 = this;
+
+      var id = this.$userId;
+      Crl = Crl || "api/crrr/".concat(id);
+      fetch(Crl).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this3.crrr = res['RRR'];
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/statusComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/statusComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      user: {},
+      a: 0,
+      b: 0,
+      c: 0,
+      d: 0,
+      e: 0,
+      f: 0,
+      sum: 0,
+      average: 0
+    };
+  },
+  mounted: function mounted() {
+    console.log(this.$userId), this.getMyDetails();
+  },
+  methods: {
+    getMyDetails: function getMyDetails() {
+      var _this = this;
+
+      var id = this.$userId;
+      axios.get("api/student/".concat(id)).then(function (res) {
+        return res;
+      }).then(function (res) {
+        console.log(res.data);
+        _this.user = res.data; // console.log(this.user.alumnicleared)
+
+        _this.a = _this.user.alumnicleared;
+        _this.b = _this.user.bursarycleared;
+        _this.c = _this.user.facultycleared;
+        _this.d = _this.user.librarycleared;
+        _this.e = _this.user.securitycleared;
+        _this.f = _this.user.staffairscleared;
+        _this.sum = _this.a + _this.b + _this.c + _this.d + _this.e + _this.f;
+        _this.average = _this.sum / 6;
+        _this.average = _this.average * 100;
       });
     }
   }
@@ -7525,7 +7640,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.dark[data-v-bfb1d4c2]{\r\n  font-weight: bold;\n}\r\n", ""]);
+exports.push([module.i, "\n.dark[data-v-bfb1d4c2]{\r\n  font-weight: bold;\n}\n.temp[data-v-bfb1d4c2]{\r\n  text-align: center;\r\n  margin-top: 3px;\n}\r\n", ""]);
 
 // exports
 
@@ -41017,17 +41132,18 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-10 offset-md-1" }, [
-        _c("h4", { staticClass: "text-center" }, [_vm._v("Take Actions")]),
+      _c("div", { staticClass: "col-md-4 offset-md-4" }, [
+        _c("h4", { staticClass: "text-center" }, [_vm._v("Generate Remita")]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-3 card" }, [
+          _c("span", {}, [
             _c(
               "a",
               {
+                staticClass: "btn btn-info mr-1 form-control",
                 attrs: {
                   href: "#",
-                  type: "",
+                  type: "button",
                   id: "show-modal",
                   "data-toggle": "modal",
                   "data-target": "#generate"
@@ -41039,17 +41155,18 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n          Generate Alumni RRR\n        ")]
+              [_vm._v("\n          Get Alumni RRR\n        ")]
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-3 card" }, [
+          _c("span", {}, [
             _c(
               "a",
               {
+                staticClass: "btn btn-info ml-3",
                 attrs: {
                   href: "#",
-                  type: "",
+                  type: "button",
                   id: "show-modal",
                   "data-toggle": "modal",
                   "data-target": "#genconvoc"
@@ -41057,355 +41174,356 @@ var render = function() {
                 on: {
                   click: function($event) {
                     _vm.showConvoc = true
+                    _vm.setCR()
                   }
                 }
               },
-              [_vm._v("\n        Generate Convocation RRR\n      ")]
+              [_vm._v("\n        Get Convocation RRR\n      ")]
             )
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm.showModal
-            ? _c("div", [
-                _c(
-                  "div",
-                  {
-                    staticClass: "modal fade",
-                    attrs: {
-                      id: "generate",
-                      tabindex: "-1",
-                      role: "dialog",
-                      "aria-labelledby": "exampleModalCenterTitle",
-                      "aria-hidden": "true"
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "modal-dialog modal-dialog-centered",
-                        attrs: { role: "document" }
-                      },
-                      [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _vm._m(2),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                  }
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.showModal
+          ? _c("div", [
+              _c(
+                "div",
+                {
+                  staticClass: "modal fade",
+                  attrs: {
+                    id: "generate",
+                    tabindex: "-1",
+                    role: "dialog",
+                    "aria-labelledby": "exampleModalCenterTitle",
+                    "aria-hidden": "true"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog modal-dialog-centered",
+                      attrs: { role: "document" }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _vm._m(1),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
                                 }
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  { attrs: { slot: "header" }, slot: "header" },
-                                  [
-                                    _c("input", {
-                                      staticClass: "form-control",
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                { attrs: { slot: "header" }, slot: "header" },
+                                [
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      disabled: "",
+                                      type: "text",
+                                      name: "",
+                                      id: ""
+                                    },
+                                    domProps: { value: _vm.rrr }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "hidden",
+                                      name: "",
+                                      id: "id"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "mt-1 btn btn-outline-danger btn-sm",
                                       attrs: {
-                                        disabled: "",
-                                        type: "text",
-                                        name: "",
-                                        id: "room_type"
+                                        type: "button",
+                                        "data-dismiss": "modal"
                                       },
-                                      domProps: { value: _vm.rrr }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass: "form-control",
-                                      attrs: {
-                                        type: "hidden",
-                                        name: "",
-                                        id: "id"
+                                      on: {
+                                        click: [
+                                          function($event) {
+                                            $event.preventDefault()
+                                          },
+                                          function($event) {
+                                            _vm.showModal = false
+                                          }
+                                        ]
                                       }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "mt-1 btn btn-outline-danger btn-sm",
-                                        attrs: {
-                                          type: "button",
-                                          "data-dismiss": "modal"
-                                        },
-                                        on: {
-                                          click: [
-                                            function($event) {
-                                              $event.preventDefault()
-                                            },
-                                            function($event) {
-                                              _vm.showModal = false
-                                            }
-                                          ]
-                                        }
+                                    },
+                                    [_vm._v("Done")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "mt-1 btn btn-outline-success\n                  btn-sm",
+                                      attrs: {
+                                        type: "button",
+                                        "data-dismiss": "modal"
                                       },
-                                      [_vm._v("Done")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "mt-1 btn btn-outline-success\n                  btn-sm",
-                                        attrs: {
-                                          type: "button",
-                                          "data-dismiss": "modal"
-                                        },
-                                        on: {
-                                          click: [
-                                            function($event) {
-                                              $event.preventDefault()
-                                            },
-                                            function($event) {}
-                                          ]
-                                        }
-                                      },
-                                      [_vm._v("Print")]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
+                                      on: {
+                                        click: [
+                                          function($event) {
+                                            $event.preventDefault()
+                                          },
+                                          function($event) {}
+                                        ]
+                                      }
+                                    },
+                                    [_vm._v("Print")]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
                         ])
-                      ]
-                    )
-                  ]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.editProfile
-            ? _c("div", [
-                _c(
-                  "div",
-                  {
-                    staticClass: "modal fade",
-                    attrs: {
-                      id: "editprofile",
-                      tabindex: "-1",
-                      role: "dialog",
-                      "aria-labelledby": "exampleModalCenterTitle",
-                      "aria-hidden": "true"
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "modal-dialog modal-dialog-centered",
-                        attrs: { role: "document" }
-                      },
-                      [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _vm._m(3),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                  }
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.editProfile
+          ? _c("div", [
+              _c(
+                "div",
+                {
+                  staticClass: "modal fade",
+                  attrs: {
+                    id: "editprofile",
+                    tabindex: "-1",
+                    role: "dialog",
+                    "aria-labelledby": "exampleModalCenterTitle",
+                    "aria-hidden": "true"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog modal-dialog-centered",
+                      attrs: { role: "document" }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
                                 }
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  { attrs: { slot: "header" }, slot: "header" },
-                                  [
-                                    _c("input", {
-                                      staticClass: "form-control",
-                                      attrs: { type: "text", name: "", id: "" }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass: "form-control",
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                { attrs: { slot: "header" }, slot: "header" },
+                                [
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: { type: "text", name: "", id: "" }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "hidden",
+                                      name: "",
+                                      id: "id"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "mt-1 btn btn-outline-danger btn-sm",
                                       attrs: {
-                                        type: "hidden",
-                                        name: "",
-                                        id: "id"
+                                        type: "button",
+                                        "data-dismiss": "modal"
+                                      },
+                                      on: {
+                                        click: [
+                                          function($event) {
+                                            $event.preventDefault()
+                                          },
+                                          function($event) {
+                                            _vm.editProfile = false
+                                          }
+                                        ]
                                       }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "mt-1 btn btn-outline-danger btn-sm",
-                                        attrs: {
-                                          type: "button",
-                                          "data-dismiss": "modal"
-                                        },
-                                        on: {
-                                          click: [
-                                            function($event) {
-                                              $event.preventDefault()
-                                            },
-                                            function($event) {
-                                              _vm.editProfile = false
-                                            }
-                                          ]
-                                        }
+                                    },
+                                    [_vm._v("Cancel")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "mt-1 btn btn-outline-success\n                  btn-sm",
+                                      attrs: {
+                                        type: "button",
+                                        "data-dismiss": "modal"
                                       },
-                                      [_vm._v("Cancel")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "mt-1 btn btn-outline-success\n                  btn-sm",
-                                        attrs: {
-                                          type: "button",
-                                          "data-dismiss": "modal"
-                                        },
-                                        on: {
-                                          click: [
-                                            function($event) {
-                                              $event.preventDefault()
-                                            },
-                                            function($event) {}
-                                          ]
-                                        }
-                                      },
-                                      [_vm._v("Print")]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
+                                      on: {
+                                        click: [
+                                          function($event) {
+                                            $event.preventDefault()
+                                          },
+                                          function($event) {}
+                                        ]
+                                      }
+                                    },
+                                    [_vm._v("Print")]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
                         ])
-                      ]
-                    )
-                  ]
-                )
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.showConvoc
-            ? _c("div", [
-                _c(
-                  "div",
-                  {
-                    staticClass: "modal fade",
-                    attrs: {
-                      id: "genconvoc",
-                      tabindex: "-1",
-                      role: "dialog",
-                      "aria-labelledby": "exampleModalCenterTitle",
-                      "aria-hidden": "true"
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "modal-dialog modal-dialog-centered",
-                        attrs: { role: "document" }
-                      },
-                      [
-                        _c("div", { staticClass: "modal-content" }, [
-                          _vm._m(4),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "modal-body" }, [
-                            _c(
-                              "form",
-                              {
-                                on: {
-                                  submit: function($event) {
-                                    $event.preventDefault()
-                                  }
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.showConvoc
+          ? _c("div", [
+              _c(
+                "div",
+                {
+                  staticClass: "modal fade",
+                  attrs: {
+                    id: "genconvoc",
+                    tabindex: "-1",
+                    role: "dialog",
+                    "aria-labelledby": "exampleModalCenterTitle",
+                    "aria-hidden": "true"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal-dialog modal-dialog-centered",
+                      attrs: { role: "document" }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-content" }, [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "modal-body" }, [
+                          _c(
+                            "form",
+                            {
+                              on: {
+                                submit: function($event) {
+                                  $event.preventDefault()
                                 }
-                              },
-                              [
-                                _c(
-                                  "div",
-                                  { attrs: { slot: "header" }, slot: "header" },
-                                  [
-                                    _c("input", {
-                                      staticClass: "form-control",
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                { attrs: { slot: "header" }, slot: "header" },
+                                [
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "text",
+                                      disabled: "",
+                                      name: "",
+                                      id: ""
+                                    },
+                                    domProps: { value: _vm.crrr }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      type: "hidden",
+                                      name: "",
+                                      id: "id"
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "mt-1 btn btn-outline-danger btn-sm",
                                       attrs: {
-                                        type: "text",
-                                        name: "",
-                                        id: "room_type"
+                                        type: "button",
+                                        "data-dismiss": "modal"
+                                      },
+                                      on: {
+                                        click: [
+                                          function($event) {
+                                            $event.preventDefault()
+                                          },
+                                          function($event) {
+                                            _vm.showModal = false
+                                          }
+                                        ]
                                       }
-                                    }),
-                                    _vm._v(" "),
-                                    _c("input", {
-                                      staticClass: "form-control",
+                                    },
+                                    [_vm._v("Done")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "mt-1 btn btn-outline-success\n                  btn-sm",
                                       attrs: {
-                                        type: "hidden",
-                                        name: "",
-                                        id: "id"
+                                        type: "button",
+                                        "data-dismiss": "modal"
+                                      },
+                                      on: {
+                                        click: [
+                                          function($event) {
+                                            $event.preventDefault()
+                                          },
+                                          function($event) {}
+                                        ]
                                       }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "mt-1 btn btn-outline-danger btn-sm",
-                                        attrs: {
-                                          type: "button",
-                                          "data-dismiss": "modal"
-                                        },
-                                        on: {
-                                          click: [
-                                            function($event) {
-                                              $event.preventDefault()
-                                            },
-                                            function($event) {
-                                              _vm.showModal = false
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      [_vm._v("Cancel")]
-                                    ),
-                                    _vm._v(" "),
-                                    _c(
-                                      "a",
-                                      {
-                                        staticClass:
-                                          "mt-1 btn btn-outline-success\n                  btn-sm",
-                                        attrs: {
-                                          type: "button",
-                                          "data-dismiss": "modal"
-                                        },
-                                        on: {
-                                          click: [
-                                            function($event) {
-                                              $event.preventDefault()
-                                            },
-                                            function($event) {}
-                                          ]
-                                        }
-                                      },
-                                      [_vm._v("Print")]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
-                          ])
+                                    },
+                                    [_vm._v("Print")]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
                         ])
-                      ]
-                    )
-                  ]
-                )
-              ])
-            : _vm._e()
-        ])
+                      ])
+                    ]
+                  )
+                ]
+              )
+            ])
+          : _vm._e()
       ])
     ])
   ])
@@ -41417,14 +41535,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { staticClass: "float-right" }, [
       _c("img", { attrs: { src: "", alt: "profile picture" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-3 card" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Pay Convocation Fee")])
     ])
   },
   function() {
@@ -41500,6 +41610,120 @@ var staticRenderFns = [
         },
         [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
       )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/statusComponent.vue?vue&type=template&id=83ce17a0&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/statusComponent.vue?vue&type=template&id=83ce17a0&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-10 offset-md-1 mt-4" }, [
+        _c("p", { staticClass: "text-center" }, [
+          _vm._v(
+            " Dear " + _vm._s(_vm.user.name) + " this is your current status"
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "progress mb-3" }, [
+          _c(
+            "span",
+            {
+              staticClass: "progress-bar",
+              staticStyle: { width: "this.average%", background: "green" },
+              attrs: {
+                role: "progressbar",
+                "aria-valuenow": "75",
+                "aria-valuemin": "0",
+                "aria-valuemax": "100"
+              }
+            },
+            [_vm._v(_vm._s(_vm.average))]
+          )
+        ]),
+        _vm._v(" "),
+        _c("h4", { staticClass: "text-center mt-4" }, [
+          _vm._v("Status in Details")
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Alumni Clearance "),
+          _vm.user.alumnicleared == 0
+            ? _c("span", { staticClass: "text-danger" }, [_vm._v("Uncleared")])
+            : _c("span", { staticClass: "text-success" }, [_vm._v("Cleared")])
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Audit Clearance "),
+          _vm.user.bursarycleared == 0
+            ? _c("span", { staticClass: "text-danger" }, [_vm._v("Uncleared")])
+            : _c("span", { staticClass: "text-success" }, [_vm._v("Cleared")])
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Security Clearance "),
+          _vm.user.securitycleared == 0
+            ? _c("span", { staticClass: "text-danger" }, [_vm._v("Uncleared")])
+            : _c("span", { staticClass: "text-success" }, [_vm._v("Cleared")])
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Student Affairs Clearance "),
+          _vm.user.staffairscleared == 0
+            ? _c("span", { staticClass: "text-danger" }, [_vm._v("Uncleared")])
+            : _c("span", { staticClass: "text-success" }, [_vm._v("Cleared")])
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Library Clearance "),
+          _vm.user.librarycleared == 0
+            ? _c("span", { staticClass: "text-danger" }, [_vm._v("Uncleared")])
+            : _c("span", { staticClass: "text-success" }, [_vm._v("Cleared")])
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v("Faculty Clearance "),
+          _vm.user.facultycleared == 0
+            ? _c("span", { staticClass: "text-danger" }, [_vm._v("Uncleared")])
+            : _c("span", { staticClass: "text-success" }, [_vm._v("Cleared")])
+        ]),
+        _vm._v(" "),
+        _vm._m(0)
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", {}, [
+      _c("h4", { staticClass: "text-center text-danger" }, [_vm._v("Notice")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-center text-danger" }, [
+        _vm._v(
+          "Please go to the respective ofice where you have issues and\n       rectify them "
+        )
+      ])
     ])
   }
 ]
@@ -53679,6 +53903,7 @@ Vue.component('library-component', __webpack_require__(/*! ./components/LibraryC
 Vue.component('audit-component', __webpack_require__(/*! ./components/AuditComponent.vue */ "./resources/js/components/AuditComponent.vue")["default"]);
 Vue.component('faculty-component', __webpack_require__(/*! ./components/FacultyComponent.vue */ "./resources/js/components/FacultyComponent.vue")["default"]);
 Vue.component('profile-component', __webpack_require__(/*! ./components/profileComponent.vue */ "./resources/js/components/profileComponent.vue")["default"]);
+Vue.component('status-component', __webpack_require__(/*! ./components/statusComponent.vue */ "./resources/js/components/statusComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -54422,6 +54647,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_template_id_bfb1d4c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_profileComponent_vue_vue_type_template_id_bfb1d4c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/statusComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/statusComponent.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _statusComponent_vue_vue_type_template_id_83ce17a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./statusComponent.vue?vue&type=template&id=83ce17a0&scoped=true& */ "./resources/js/components/statusComponent.vue?vue&type=template&id=83ce17a0&scoped=true&");
+/* harmony import */ var _statusComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./statusComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/statusComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _statusComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _statusComponent_vue_vue_type_template_id_83ce17a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _statusComponent_vue_vue_type_template_id_83ce17a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "83ce17a0",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/statusComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/statusComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/statusComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_statusComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./statusComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/statusComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_statusComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/statusComponent.vue?vue&type=template&id=83ce17a0&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/statusComponent.vue?vue&type=template&id=83ce17a0&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_statusComponent_vue_vue_type_template_id_83ce17a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./statusComponent.vue?vue&type=template&id=83ce17a0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/statusComponent.vue?vue&type=template&id=83ce17a0&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_statusComponent_vue_vue_type_template_id_83ce17a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_statusComponent_vue_vue_type_template_id_83ce17a0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

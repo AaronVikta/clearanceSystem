@@ -7,17 +7,26 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Paystack;
+use App\AlumniPayment;
+use App\ConvocationPayment;
 
 class PaymentController extends Controller
 {
-
+  public function __construct(){
+    $this->middleware('auth');
+  }
     /**
      * Redirect the User to Paystack Payment Page
      * @return Url
      */
     public function redirectToGateway()
     {
-        return Paystack::getAuthorizationUrl()->redirectNow();
+        // try {
+          return Paystack::getAuthorizationUrl()->redirectNow();
+        // } catch (\Exception $e) {
+        //   return back()->with('Could not be completed');
+        // }
+
     }
 
     /**
@@ -27,10 +36,51 @@ class PaymentController extends Controller
     public function handleGatewayCallback()
     {
         $paymentDetails = Paystack::getPaymentData();
-
-        dd($paymentDetails);
-        // Now you have the payment details,
-        // you can store the authorization_code in your db to allow for recurrent subscriptions
-        // you can then redirect or do whatever you want
+        $data=$paymentDetails['data'];
+        $metadata= $data['metadata'];
+        $type = $metadata['type'];
+        if ($type=="convocation"){
+          // update convocation table;
+          $reg_no=$metadata['reg_no'];
+          $student=$data['customer'];
+          $student_email= $student['email'];
+          $fullname= $metadata['student_name'];
+          $details = array('reg_no' =>$reg_no ,'fullname'=>$fullname,
+        'email'=>$student_email, 'amount'=>10000 );
+        // dd($details);
+          $records= ConvocationPayment::where('reg_no','=',$reg_no)->get();
+          $records=$records[0];
+          // dd($records);
+          if($records->paid==0){
+          $records->paid = 1;
+          $records->update();
+          // return redirect('convocationreceipt')->with('details',$details);
+          return view("convocationreceipt")->with("details",$details);
+        }
+        else{
+            return view("convocationreceipt")->with("details",$details);
+        }
+        }
+        elseif ($type=="alumni") {
+          // update alumni table
+          $reg_no=$metadata['reg_no'];
+          $student=$data['customer'];
+          $student_email= $student['email'];
+          $fullname= $metadata['student_name'];
+          $details = array('reg_no' =>$reg_no ,'fullname'=>$fullname,
+        'email'=>$student_email, 'amount'=>650 );
+        // dd($details);
+          $records= AlumniPayment::where('reg_no','=',$reg_no)->get();
+          $records=$records[0];
+          // dd($records);
+          if($records->paid==0){
+          $records->paid = 1;
+          $records->update();
+          return view("alumnireceipt")->with("details",$details);
+        }
+        else{
+            return view("alumnireceipt")->with("details",$details);
+        }
+        }
     }
 }
