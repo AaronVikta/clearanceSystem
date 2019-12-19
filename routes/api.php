@@ -29,4 +29,5 @@ Route::post('/alumnirrr/{id}','RRRController@generateAlumniRRR');
 Route::post('/convocrrr/{id}','RRRController@generateConvocationRRR');
 Route::get('myrrr/{id}','RRRController@getMyAlumniRRR');
 Route::get('crrr/{id}', 'RRRController@getMyConvocRRR');
+Route::post('update/{id}', 'StudentController@updateProfile');
 // Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');

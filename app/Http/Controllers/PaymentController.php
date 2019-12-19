@@ -45,12 +45,14 @@ class PaymentController extends Controller
           $student=$data['customer'];
           $student_email= $student['email'];
           $fullname= $metadata['student_name'];
-          $details = array('reg_no' =>$reg_no ,'fullname'=>$fullname,
-        'email'=>$student_email, 'amount'=>10000 );
+
         // dd($details);
           $records= ConvocationPayment::where('reg_no','=',$reg_no)->get();
           $records=$records[0];
           // dd($records);
+          $rrr= $records->RRR;
+          $details = array('reg_no' =>$reg_no ,'fullname'=>$fullname,
+        'email'=>$student_email, 'amount'=>10000,'rrr'=>$rrr );
           if($records->paid==0){
           $records->paid = 1;
           $records->update();
@@ -67,12 +69,15 @@ class PaymentController extends Controller
           $student=$data['customer'];
           $student_email= $student['email'];
           $fullname= $metadata['student_name'];
-          $details = array('reg_no' =>$reg_no ,'fullname'=>$fullname,
-        'email'=>$student_email, 'amount'=>650 );
+
         // dd($details);
           $records= AlumniPayment::where('reg_no','=',$reg_no)->get();
           $records=$records[0];
           // dd($records);
+          $rrr= $records->RRR;
+          // dd($rrr);
+          $details = array('reg_no' =>$reg_no ,'fullname'=>$fullname,
+        'email'=>$student_email, 'amount'=>650, 'rrr'=>$rrr );
           if($records->paid==0){
           $records->paid = 1;
           $records->update();

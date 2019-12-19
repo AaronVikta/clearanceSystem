@@ -2894,6 +2894,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2903,7 +2907,8 @@ __webpack_require__.r(__webpack_exports__);
       generatedrrr: "",
       showConvoc: "",
       editProfile: "",
-      student: {}
+      student: {},
+      phone: ""
     };
   },
   mounted: function mounted() {
@@ -2975,6 +2980,16 @@ __webpack_require__.r(__webpack_exports__);
         return res.json();
       }).then(function (res) {
         _this3.crrr = res['RRR'];
+      });
+    },
+    updateProfile: function updateProfile() {
+      var _this4 = this;
+
+      var id = this.$userId;
+      axios.post("api/update/".concat(id), {
+        phone: this.phone
+      }).then(function (res) {
+        _this4.getStudentDetail();
       });
     }
   }
@@ -41089,8 +41104,6 @@ var render = function() {
           _c("div", { staticClass: "col-md-12" }, [
             _c("span", [_vm._v("Name: " + _vm._s(_vm.student.name) + " ")]),
             _vm._v(" "),
-            _vm._m(0),
-            _c("br"),
             _vm._v("\n            Department: " + _vm._s(_vm.student.dept)),
             _c("br"),
             _vm._v("\n            Email: " + _vm._s(_vm.student.email) + " "),
@@ -41206,7 +41219,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "modal-content" }, [
-                        _vm._m(1),
+                        _vm._m(0),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c(
@@ -41322,7 +41335,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "modal-content" }, [
-                        _vm._m(2),
+                        _vm._m(1),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c(
@@ -41340,16 +41353,53 @@ var render = function() {
                                 { attrs: { slot: "header" }, slot: "header" },
                                 [
                                   _c("input", {
-                                    staticClass: "form-control",
-                                    attrs: { type: "text", name: "", id: "" }
+                                    staticClass: "form-control mb-2",
+                                    attrs: {
+                                      type: "text",
+                                      name: "",
+                                      disabled: "",
+                                      placeholder: "your reg no",
+                                      id: ""
+                                    },
+                                    domProps: { value: _vm.student.reg_no }
                                   }),
                                   _vm._v(" "),
                                   _c("input", {
-                                    staticClass: "form-control",
+                                    staticClass: "form-control mb-2",
                                     attrs: {
-                                      type: "hidden",
+                                      type: "text",
                                       name: "",
+                                      placeholder: "your reg no",
+                                      id: "",
+                                      disabled: ""
+                                    },
+                                    domProps: { value: _vm.student.dept }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.phone,
+                                        expression: "phone"
+                                      }
+                                    ],
+                                    staticClass: "form-control mb-1",
+                                    attrs: {
+                                      type: "text",
+                                      name: "",
+                                      placeholder: "Edit Phone Number",
                                       id: "id"
+                                    },
+                                    domProps: { value: _vm.phone },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.phone = $event.target.value
+                                      }
                                     }
                                   }),
                                   _vm._v(" "),
@@ -41390,11 +41440,13 @@ var render = function() {
                                           function($event) {
                                             $event.preventDefault()
                                           },
-                                          function($event) {}
+                                          function($event) {
+                                            return _vm.updateProfile()
+                                          }
                                         ]
                                       }
                                     },
-                                    [_vm._v("Print")]
+                                    [_vm._v("Update")]
                                   )
                                 ]
                               )
@@ -41432,7 +41484,7 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "modal-content" }, [
-                        _vm._m(3),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c("div", { staticClass: "modal-body" }, [
                           _c(
@@ -41533,14 +41585,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("span", { staticClass: "float-right" }, [
-      _c("img", { attrs: { src: "", alt: "profile picture" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
       _c(
         "h5",
@@ -41570,7 +41614,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLongTitle" } },
-        [_c("a", { attrs: { href: "#" } }, [_vm._v("Your profile")])]
+        [_c("a", { attrs: { href: "#" } }, [_vm._v("Edit Your profile")])]
       ),
       _vm._v(" "),
       _c(
@@ -53911,7 +53955,12 @@ Vue.component('status-component', __webpack_require__(/*! ./components/statusCom
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  methods: {
+    printme: function printme() {
+      window.print();
+    }
+  }
 });
 
 /***/ }),

@@ -60,6 +60,37 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="Registration number" class="col-md-4 col-form-label text-md-right">
+                              {{ __('Reg No') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="reg_no" type="text" class="form-control{{ $errors->has('reg_no') ? ' is-invalid' : '' }}" name="reg_no" required>
+
+                                @if ($errors->has('reg_no'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('reg_no') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Department"
+                            class="col-md-4 col-form-label text-md-right">
+                              {{ __('Department') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="dept" type="text"
+                                class="form-control{{ $errors->has('dept') ? ' is-invalid' : '' }}"
+                                name="dept" required>
+
+                                @if ($errors->has('dept'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('dept') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

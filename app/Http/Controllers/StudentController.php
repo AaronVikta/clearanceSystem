@@ -65,6 +65,16 @@ class StudentController extends Controller
         //
     }
 
+    public function updateProfile(Request $request,$id){
+      $this->validate($request,[
+        'phone'=>'required',
+      ]);
+      $student = User::findOrFail($id);
+      $student->phone = $request->phone;
+      $student->update();
+      return $student;
+    }
+
     /**
      * Update the specified resource in storage.
      *

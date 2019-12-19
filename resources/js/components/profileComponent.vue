@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-md-12">
               <span>Name: {{student.name}} </span>
-                <span class="float-right"> <img src="" alt="profile picture"></span><br>
+                <!-- <span class="float-right"> <img src="" alt="profile picture"></span><br> -->
               Department: {{student.dept}}<br>
               Email: {{student.email}} <br>
               Registration Number: {{student.reg_no}} <br>
@@ -76,7 +76,7 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle"><a href="#">Your profile</a></h5>
+                <h5 class="modal-title" id="exampleModalLongTitle"><a href="#">Edit Your profile</a></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -84,12 +84,16 @@
               <div class="modal-body">
                 <form v-on:submit.prevent>
                   <div class="" slot="header">
-                    <input type="text" name="" class="form-control" id="">
-                    <input type="hidden" name="" class="form-control" id="id">
+                    <input type="text" name="" disabled placeholder="your reg no"
+                    class="form-control mb-2" id="" :value="student.reg_no">
+                    <input type="text" name="" placeholder="your reg no"
+                    class="form-control mb-2" id="" :value="student.dept" disabled>
+                    <input type="text" name="" placeholder="Edit Phone Number"
+                    class="form-control mb-1" id="id" v-model="phone">
                     <a type="button" v-on:click.prevent @click="editProfile=false"
                     data-dismiss="modal" class="mt-1 btn btn-outline-danger btn-sm" >Cancel</a>
                     <a type="button" v-on:click.prevent class="mt-1 btn btn-outline-success
-                    btn-sm" @click="" data-dismiss="modal">Print</a>
+                    btn-sm" @click="updateProfile()" data-dismiss="modal">Update</a>
                   </div>
                 </form>
               </div>
@@ -142,7 +146,8 @@ export default {
       editProfile:"",
       student:{
 
-      }
+      },
+      phone:""
     }
   },
   mounted(){
@@ -216,6 +221,16 @@ export default {
      .then(res=>{
        this.crrr=res['RRR']
      })
+   },
+   updateProfile(){
+     let id = this.$userId;
+     axios.post(`api/update/${id}`,{
+       phone:this.phone
+     })
+     .then(res=>{
+       this.getStudentDetail()
+     }
+     )
    }
   }
 }

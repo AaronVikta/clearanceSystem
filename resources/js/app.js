@@ -37,5 +37,10 @@ Vue.component('status-component', require('./components/statusComponent.vue').de
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    methods:{
+      printme(){
+        window.print();
+      }
+    }
 });

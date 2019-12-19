@@ -86,7 +86,7 @@
           <input type="hidden" name="metadata" value="{{ json_encode($array = [
             'reg_no' => "$reg_no",'phone'=>"$phone",
           'student_name' => "$fullname",'type' => "$type"]) }}" >
-dden" name="key" value="{{ config('paystack.publicKey') }}"> {{-- required --}}
+<input type="hidden" name="key" value="{{ config('paystack.publicKey') }}"> {{-- required --}}
           <input type="text" name="" value="" placeholder="Your RRR Goes Here" class="form-control">
           <input type="submit" value="Pay Now">
         </form>
